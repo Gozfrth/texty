@@ -1,0 +1,110 @@
+{
+  "name": "new-texty",
+  "displayName": "new_texty",
+  "description": "ollama code review and suggestions",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.100.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "New Texty",
+      "properties": {
+        "new-texty.model": {
+          "type": "string",
+          "default": "qwen2.5:3b",
+          "description": "The Ollama model to use for AI features"
+        }
+      }
+    },
+    "chatParticipants": [
+    {
+        "id": "chat-tutorial.code-tutor",
+        "fullName": "Code Tutor",
+        "name": "tutor",
+        "description": "What can I teach you?",
+        "isSticky": true,
+        "commands": [
+          {
+            "name": "exercise",
+            "description": "Provide exercises to practice a concept."
+          }
+        ]
+    }
+    ],
+    "commands": [
+      {
+        "command": "new-texty.code_suggestion",
+        "title": "Toggle AI Code Annotations",
+        "icon": "$(light-bulb)"
+      },
+      {
+        "command": "new-texty.open_chat",
+        "title": "Open Code Chat",
+        "icon" : "$(comment-discussion)"
+      },
+      {
+        "command": "new-texty.auto_complete",
+        "title": "AI Code Auto-Complete",
+        "icon": "$(symbol-snippet)"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "new-texty.code_suggestion",
+        "key": "alt+a",
+        "mac": "alt+a",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "new-texty.auto_complete",
+        "key": "alt+c",
+        "mac": "alt+c",
+        "when": "editorTextFocus"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "new-texty.code_suggestion",
+          "group": "navigation"
+        },
+        {
+          "command": "new-texty.auto_complete",
+          "group": "navigation"
+        },
+        {
+          "command": "new-texty.open_chat",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.100.0",
+    "@typescript-eslint/eslint-plugin": "^8.28.0",
+    "@typescript-eslint/parser": "^8.28.0",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1",
+    "eslint": "^9.23.0",
+    "typescript": "^5.8.2"
+  },
+  "dependencies": {
+    "axios": "^1.9.0"
+  }
+}

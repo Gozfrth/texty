@@ -1,0 +1,7 @@
+[
+  {
+    "key": "alt+a",
+    "command": "new-texty.code_suggestion",
+    "when": "editorTextFocus"
+  }
+]
